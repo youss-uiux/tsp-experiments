@@ -2,9 +2,9 @@
   "expt_name": "tsp30",
   "gpu_id": "0",
 
-  "train_filepath": "./data/tsp30_train_concorde.txt",
-  "val_filepath": "./data/tsp30_val_concorde.txt",
-  "test_filepath": "./data/tsp30_test_concorde.txt",
+  "train_filepath": "../../data/tsp30_train_concorde.txt",
+  "val_filepath": "../../data/tsp30_val_concorde.txt",
+  "test_filepath": "../../data/tsp30_test_concorde.txt",
 
   "num_nodes": 30,
   "num_neighbors": -1,
