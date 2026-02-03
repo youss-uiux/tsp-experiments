@@ -43,9 +43,9 @@ class BatchNormEdge(nn.Module):
         Returns:
             e_bn: Edge features after batch normalization (batch_size, num_nodes, num_nodes, hidden_dim)
         """
-        e_trans = e.transpose(1, 3).contiguous()  # Reshape input: (batch_size, num_nodes, num_nodes, hidden_dim)
+        e_trans = e.permute(0, 3, 1, 2).contiguous()  # Reshape input: (batch_size, hidden_dim, num_nodes, num_nodes)
         e_trans_bn = self.batch_norm(e_trans)
-        e_bn = e_trans_bn.transpose(1, 3).contiguous()  # Reshape to original
+        e_bn = e_trans_bn.permute(0, 2, 3, 1).contiguous()  # Reshape to original
         return e_bn
 
 
@@ -142,9 +142,9 @@ class ResidualGatedGCNLayer(nn.Module):
         edge_gate = F.sigmoid(e_tmp)
         # Node convolution
         x_tmp = self.node_feat(x_in, edge_gate)
-        # Batch normalization
-        e_tmp = self.bn_edge(e_tmp)
-        x_tmp = self.bn_node(x_tmp)
+        # Batch normalization - Ajouter .contiguous()
+        e_tmp = self.bn_edge(e_tmp).contiguous()
+        x_tmp = self.bn_node(x_tmp).contiguous()
         # ReLU Activation
         e = F.relu(e_tmp)
         x = F.relu(x_tmp)
