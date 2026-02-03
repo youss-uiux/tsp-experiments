@@ -21,7 +21,7 @@ def loss_nodes(y_pred_nodes, y_nodes, node_cw):
     """
     # Node loss
     y = F.log_softmax(y_pred_nodes, dim=2)  # B x V x voc_nodes_out
-    y = y.permute(0, 2, 1)  # B x voc_nodes x V
+    y = y.permute(0, 2, 1).contiguous()  # B x voc_nodes x V
     loss_nodes = nn.NLLLoss(node_cw)(y, y_nodes)
     return loss_nodes
 
@@ -41,7 +41,7 @@ def loss_edges(y_pred_edges, y_edges, edge_cw):
     """
     # Edge loss
     y = F.log_softmax(y_pred_edges, dim=3)  # B x V x V x voc_edges
-    y = y.permute(0, 3, 1, 2)  # B x voc_edges x V x V
+    y = y.permute(0, 3, 1, 2).contiguous()  # B x voc_edges x V x V
     loss_edges = nn.NLLLoss(edge_cw)(y, y_edges)
     return loss_edges
 
