@@ -1,9 +1,9 @@
 {
   "expt_name": "tsp50",
 
-  "train_filepath": "./data/tsp50_train_concorde.txt",
-  "val_filepath": "./data/tsp50_val_concorde.txt",
-  "test_filepath": "./data/tsp50_test_concorde.txt",
+  "train_filepath": "../../../data/tsp50_train_concorde.txt",
+  "val_filepath": "../../../data/tsp50_val_concorde.txt",
+  "test_filepath": "../../../data/tsp50_test_concorde.txt",
 
   "num_nodes": 50,
   "num_neighbors": 20,

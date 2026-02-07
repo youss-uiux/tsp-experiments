@@ -311,7 +311,7 @@ def main(config, pretrained=False, patience=1, lr_scale=1., pretrained_path=None
     print('Number of parameters:', nb_param)
 
     # Create log directory
-    tmp_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    tmp_time = datetime.now().strftime('%Y-%m-%d %H-%M-%S')
     tmp_time = '{}-{}'.format(netname, tmp_time)
     log_dir = f"./logs/{config.expt_name}/{tmp_time}/"
     os.makedirs(log_dir, exist_ok=True)
